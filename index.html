@@ -15,11 +15,34 @@
     {
         var source = "http://qa.simb.com.au/choices-ipad-app/media/eco.mp3";
         
+        var fileURL = cordova.file.dataDirectory + "eco.mp3";
+        alert(fileURL);
+        
         var fileTransfer = new FileTransfer();  
         alert("File Transfer Object Created");
         var uri = encodeURI(source);    
         
         alert("Downloading: " + uri);
+        
+        fileTransfer.download(
+            uri,
+            fileURL,
+            function(entry) {
+                console.log("download complete: " + entry.toURL());
+            },
+            function(error) {
+                console.log("download error source " + error.source);
+                console.log("download error target " + error.target);
+                console.log("upload error code" + error.code);
+            },
+            false,
+            {
+                headers: {
+                    "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
+                }
+            }
+        );        
+        
     }       
     
     $(document).ready(function() {
