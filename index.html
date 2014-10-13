@@ -16,7 +16,7 @@
         document.addEventListener('deviceready', function() {
             alert("READY");
 
-            var song1 = 'softie.mp3';
+            var song1 = 'audio/softie.mp3';
             var lla = null;
             
             if( window.plugins && window.plugins.LowLatencyAudio ) {
@@ -24,17 +24,17 @@
                 lla = window.plugins.LowLatencyAudio;
                 
                 // preload audio resource
-                lla.preloadAudio( song1, song1, 1, function(msg){
+                lla.preloadAudio( 'song1', song1, 1, function(msg){
                 }, function(msg){
                     console.log( 'error: ' + msg );
                 });               
                 
                 
-                lla.play( song1 );
+                lla.play( 'song1' );
                 
                 setTimeout(function() {
-                    lla.stop( song1 );
-                    lla.unload( song1 );
+                    lla.stop( 'song1' );
+                    lla.unload( 'song1' );
                 }, 5000);
             }                    
             
