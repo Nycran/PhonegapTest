@@ -7,6 +7,10 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     
     <script type="text/javascript">
+    var media = {
+        'song1': 'audio/softie.mp3'
+    };    
+    
     $(document).ready(function() {
         alert("HERE"); 
     });
@@ -14,28 +18,29 @@
     function init()
     {
         document.addEventListener('deviceready', function() {
-            alert("READY");
+            alert("READY");  
 
             var song1 = 'audio/softie.mp3';
-            var lla = null;
             
             if( window.plugins && window.plugins.LowLatencyAudio ) {
                 alert("HAZ PLUGIN");
-                lla = window.plugins.LowLatencyAudio;
+                var lla = window.plugins.LowLatencyAudio;
                 
                 // preload audio resource
-                lla.preloadAudio( 'song1', song1, 1, function(msg){
+                lla.preloadAudio( 'song1', media['song1'], 1, function(msg){
+                    alert("PRELOADED");
+                    
+                    lla.play( 'song1' );
+                    
+                    setTimeout(function() {
+                        lla.stop( 'song1' );
+                        lla.unload( 'song1' );
+                    }, 5000);                    
+                    
+                    
                 }, function(msg){
                     console.log( 'error: ' + msg );
                 });               
-                
-                
-                lla.play( 'song1' );
-                
-                setTimeout(function() {
-                    lla.stop( 'song1' );
-                    lla.unload( 'song1' );
-                }, 5000);
             }                    
             
         }, false);
