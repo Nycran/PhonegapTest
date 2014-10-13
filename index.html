@@ -1,13 +1,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        alert("HERE"); 
+    });
+    
+    function init()
+    {
+        document.addEventListener('deviceready', function() {
+            alert("READY");
+        }, false);
+    }
+    
+    </script>
 </head>
-
 <body>
       <video id="plantino_video_container" width="565" height="318" controls preload="none" class="hidden noSwipe">
         <source src="video/plantino15sec.mp4" type="video/mp4">
       </video>
+      
+      <script type="text/javascript">
+      init();
+      </script>
 </body>
 </html>
