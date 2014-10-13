@@ -9,7 +9,18 @@
     <script type="text/javascript">
     var media = {
         'song1': 'audio/softie.mp3'
-    };    
+    }; 
+    
+    function downloadSong()
+    {
+        var source = "http://qa.simb.com.au/choices-ipad-app/media/eco.mp3";
+        
+        var fileTransfer = new FileTransfer();  
+        alert("File Transfer Object Created");
+        var uri = encodeURI(source);    
+        
+        alert("Downloading: " + uri);
+    }       
     
     $(document).ready(function() {
         alert("HERE"); 
@@ -20,28 +31,7 @@
         document.addEventListener('deviceready', function() {
             alert("READY");  
 
-            var song1 = 'audio/softie.mp3';
-            
-            if( window.plugins && window.plugins.LowLatencyAudio ) {
-                alert("HAZ PLUGIN");
-                var lla = window.plugins.LowLatencyAudio;
-                
-                // preload audio resource
-                lla.preloadAudio( 'song1', media['song1'], 1, function(msg){
-                    alert("PRELOADED");
-                    
-                    lla.play( 'song1' );
-                    
-                    setTimeout(function() {
-                        lla.stop( 'song1' );
-                        lla.unload( 'song1' );
-                    }, 5000);                    
-                    
-                    
-                }, function(msg){
-                    console.log( 'error: ' + msg );
-                });               
-            }                    
+            downloadSong();                
             
         }, false);
     }
