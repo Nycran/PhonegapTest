@@ -10,6 +10,25 @@
     var media = {
         'song1': 'audio/softie.mp3'
     }; 
+        
+    function playAudio(url) {
+        alert("ATTEMPTING TO PLAY: " + url);
+        
+        // Play the audio file at url
+        var my_media = new Media(url,
+            // success callback
+            function () {
+                console.log("playAudio():Audio Success");
+            },
+            // error callback
+            function (err) {
+                console.log("playAudio():Audio Error: " + err);
+            }
+        );
+        
+        // Play audio
+        my_media.play();
+    }    
     
     function downloadSong()
     {
@@ -28,19 +47,18 @@
             uri,
             fileURL,
             function(entry) {
-                console.log("download complete: " + entry.toURL());
+                alert("Download Complete!");
+                
+                playAudio(fileURL);
             },
             function(error) {
+                alert("ERROR: " + error.code);
                 console.log("download error source " + error.source);
                 console.log("download error target " + error.target);
                 console.log("upload error code" + error.code);
             },
             false,
-            {
-                headers: {
-                    "Authorization": "Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=="
-                }
-            }
+            null
         );        
         
     }       

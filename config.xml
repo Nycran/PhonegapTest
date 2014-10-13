@@ -23,6 +23,8 @@
     <plugin name="Camera" value="CDVCamera" />
     <gap:plugin name="org.apache.cordova.file" />
     <gap:plugin name="org.apache.cordova.file-transfer" />                                  
+    <gap:plugin name="org.apache.cordova.media" />                                  
+    
 
     <icon src="icon.png" />
     <icon src="res/icon/ios/launcher72.png" gap:platform="ios" width="72" height="72" />
