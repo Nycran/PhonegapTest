@@ -21,7 +21,7 @@
     
     <plugin name="InAppBrowser" value="CDVInAppBrowser" />                     
     <plugin name="Camera" value="CDVCamera" />
-    <gap:plugin name="org.apache.cordova.file-transfer" version="0.2.0" />                                  
+    <gap:plugin name="org.apache.cordova.file-transfer" version="0.4.6" />                                  
 
     <icon src="icon.png" />
     <icon src="res/icon/ios/launcher72.png" gap:platform="ios" width="72" height="72" />
