@@ -15,6 +15,19 @@
     {
         document.addEventListener('deviceready', function() {
             alert("READY");
+            
+            alert("DIR: " + cordova.file.applicationDirectory);
+            
+            var url = cordova.file.applicationDirectory + "www/assets/sounds/softie.mp3";
+            alert(url);
+            
+            var song1 = new Media(url, function() {
+                alert("SUCCESS");
+            }, function() {
+                alert("ERROR");
+            });
+            song1.play();            
+            
         }, false);
     }
     
