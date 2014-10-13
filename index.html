@@ -15,18 +15,28 @@
     {
         document.addEventListener('deviceready', function() {
             alert("READY");
+
+            var song1 = 'softie.mp3';
+            var lla = null;
             
-            alert("DIR: " + cordova.file.applicationDirectory);
-            
-            var url = cordova.file.applicationDirectory + "www/assets/sounds/softie.mp3";
-            alert(url);
-            
-            var song1 = new Media(url, function() {
-                alert("SUCCESS");
-            }, function() {
-                alert("ERROR");
-            });
-            song1.play();            
+            if( window.plugins && window.plugins.LowLatencyAudio ) {
+                alert("HAZ PLUGIN");
+                lla = window.plugins.LowLatencyAudio;
+                
+                // preload audio resource
+                lla.preloadAudio( song1, song1, 1, function(msg){
+                }, function(msg){
+                    console.log( 'error: ' + msg );
+                });               
+                
+                
+                lla.play( song1 );
+                
+                setTimeout(function() {
+                    lla.stop( song1 );
+                    lla.unload( song1 );
+                }, 5000);
+            }                    
             
         }, false);
     }
