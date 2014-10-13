@@ -18,7 +18,6 @@
     <preference name="orientation" value="landscape" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="false" />
-	<preference name="AllowInlineMediaPlayback" value="true" />
     
     <plugin name="InAppBrowser" value="CDVInAppBrowser" />
     <plugin name="Camera" value="CDVCamera" />
