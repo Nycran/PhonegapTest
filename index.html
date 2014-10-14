@@ -1,91 +1,32 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Untitled Document</title>
-    <script src="phonegap.js"></script>
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    
-    <script type="text/javascript">
-    var media = {
-        'song1': 'audio/softie.mp3'
-    }; 
-        
-    function playAudio(url) {
-        alert("ATTEMPTING TO PLAY: " + url);
-        
-        // Play the audio file at url
-        var my_media = new Media(url,
-            // success callback
-            function () {
-                console.log("playAudio():Audio Success");
-            },
-            // error callback
-            function (err) {
-                console.log("playAudio():Audio Error: " + err);
-            }
-        );
-        
-        // Play audio
-        my_media.play();
-    }    
-    
-    function downloadSong()
-    {
-        var source = "http://qa.simb.com.au/choices-ipad-app/media/eco.mp3";
-        
-        var fileURL = cordova.file.dataDirectory + "eco.mp3";
-        alert(fileURL);
-        
-        var fileTransfer = new FileTransfer();  
-        alert("File Transfer Object Created");
-        var uri = encodeURI(source);    
-        
-        alert("Downloading: " + uri);
-        
-        fileTransfer.download(
-            uri,
-            fileURL,
-            function(entry) {
-                alert("Download Complete!");
-                
-                playAudio(fileURL);
-            },
-            function(error) {
-                alert("ERROR: " + error.code);
-                console.log("download error source " + error.source);
-                console.log("download error target " + error.target);
-                console.log("upload error code" + error.code);
-            },
-            false,
-            null
-        );        
-        
-    }       
-    
-    $(document).ready(function() {
-        alert("HERE"); 
-    });
-    
-    function init()
-    {
-        document.addEventListener('deviceready', function() {
-            alert("READY");  
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Media Player</title>
+		<link rel="stylesheet" href="styles/main.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta charset="utf-8">
 
-            downloadSong();                
-            
-        }, false);
-    }
-    
-    </script>
-</head>
-<body>
-      <video id="plantino_video_container" width="565" height="318" controls preload="none" class="hidden noSwipe">
-        <source src="video/plantino15sec.mp4" type="video/mp4">
-      </video>
-      
-      <script type="text/javascript">
-      init();
-      </script>
-</body>
+		<script type="text/javascript" src="scripts/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="scripts/mediaImpl.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>      
+	</head>
+	<body>
+		<header class="header">
+			<h1>Player</h1>
+		</header>
+		<div class="content">
+			<div>
+				<span>current mp3 file : </span>
+				<span id="media"></span>
+			</div>
+            <div class="action-area ch50">
+				<button class="button" id="buttonPlayAudio">Play</button>
+				<button class="button" id="buttonStopAudio">Stop</button>
+				<button class="button" id="buttonPrevAudio">Prev</button>
+				<button class="button" id="buttonNextAudio">Next</button>
+            </div>			
+		</div>
+
+	</body>
 </html>
+
